@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Download Previous Craft Versions</title>
+    <style>
+      body {
+        align-items: center;
+        background: #f5f5f5;
+        color: #505050;
+        display: flex;
+        font-family: sans-serif;
+        font-size: 18px;
+        justify-content: center;
+        min-height: 100vh;
+      }
+      a {
+        color: #4a7cf6;
+      }
+      .container {
+        text-align: center;
+        width: 100%;
+      }
+      form {
+        margin: 0 auto;
+        max-width: 250px;
+      }
+      form input[type="text"] {
+        display: block;
+        margin-bottom: 0.5rem;
+        min-height: 50px;
+        text-align: center;
+        font-size: 1em;
+        width: 100%;
+      }
+      form input::placeholder {
+        opacity: 0.5;
+      }
+      form input[type="submit"] {
+        background: linear-gradient(90deg,#184cef 0,#2bd2e5);
+        border: none;
+        color: #fff;
+        cursor: pointer;
+        display: block;
+        margin: 1rem auto 0;
+        min-height: 50px;
+        width: 50%;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Download Previous Craft CMS Versions</h1>
+      <form id="form" action="" style="margin-bottom: 1rem;">
+        <input id="version" type="text" placeholder="Version" value="" style="display: block;">
+        <input id="build" type="text" placeholder="Build" value="" style="display: block;">
+        <input type="submit" value="Get Link">
+      </form>
+
+      <p class="body"></p>
+
+      <script>
+        var version = document.querySelector('#version'),
+          build = document.querySelector('#build'),
+          link = document.createElement('a'),
+          form = document.querySelector('#form');
+
+        function updateLink(version, build) {
+          link.setAttribute('href', `https://download.craftcms.com/craft/${version}/${version}.${build}/Craft-${version}.${build}.zip`);
+          link.innerHTML = `https://download.craftcms.com/craft/${version}/${version}.${build}/Craft-${version}.${build}.zip`;
+
+          document.querySelector('.body').appendChild(link);
+        }
+
+        form.addEventListener('submit', function (e) {
+          e.preventDefault();
+          updateLink(version.value, build.value);
+        })
+      </script>
+    </div>
+  </body>
+</html>
